@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<WindowsPerformanceRecorder Version="1">
+  <Profiles>
+
+    <EventCollector Id="Collector" Name="Collector">
+      <BufferSize Value="256"/>
+      <Buffers Value="1024"/>
+    </EventCollector>
+    
+    <EventProvider Id="etwstacks" Name="fc009c55-f069-5ee5-b70f-fa2fa7b2dd20">
+      <CaptureStateOnSave>
+        <Keyword Value="0x0"/>
+      </CaptureStateOnSave>
+      <CaptureStateOnDemand>
+        <Keyword Value="0x0"/>
+      </CaptureStateOnDemand>
+    </EventProvider>
+
+    <Profile
+      Id="ETWStacks.Verbose.Memory"
+      Name="ETWStacks"
+      Description="Goroutine stacks collected via ETW"
+      LoggingMode="Memory"
+      DetailLevel="Verbose"
+      >
+      <Collectors>
+        <EventCollectorId Value="Collector">
+          <EventProviders>
+            <EventProviderId Value="etwstacks"/>
+          </EventProviders>
+        </EventCollectorId>
+      </Collectors>
+    </Profile>
+
+  </Profiles>
+</WindowsPerformanceRecorder>
